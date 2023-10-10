@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://6ih2p7la0kqc"]
+
+[ext_resource type="Script" path="res://scenes/scripts(main.gd" id="1_hxq6i"]
+[ext_resource type="Texture2D" uid="uid://can43crg862hf" path="res://assets/bg.png" id="2_isprc"]
+[ext_resource type="PackedScene" uid="uid://p5w7l4nuxnhd" path="res://scenes/snake_segment.tscn" id="2_ska1e"]
+[ext_resource type="PackedScene" uid="uid://wv42fmunr01q" path="res://scenes/hud.tscn" id="3_edqxd"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_hxq6i")
+snake_scene = ExtResource("2_ska1e")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(500, 550)
+texture = ExtResource("2_isprc")
+
+[node name="Hud" parent="." instance=ExtResource("3_edqxd")]
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
